@@ -15,8 +15,8 @@ module Dragonfly
         grid = Mongo::Grid.new(db)
 
         # returns object id
-        id = grid.put(File.read(temp_object.path), 'beach.png')
-        id
+        id = grid.put(File.read(temp_object.path), temp_object.original_filename)
+        { :uid => id, :size => temp_object.size, :filename => temp_object.original_filename, :content_type => temp_object.content_type }
       end
 
       def retrieve(uid)
